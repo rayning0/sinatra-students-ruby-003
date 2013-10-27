@@ -1,0 +1,19 @@
+<%= erb :'layouts/_header' %>
+
+<h1>Edit Student</h1>
+
+  <form action="/students/<%= @s.slug %>"  method="post">
+  <label for="name"> New Name </label>
+  <input type="text" name="name" value="<%= @s.name %>" ><br>
+  <label for="twitter"> New Twitter </label>
+  <input type="text" name="twitter" value="<%= @s.twitter %>" ><br>
+  <label for="linkedin"> New LinkedIn </label>
+  <input type="text" name="linkedin" value="<%= @s.linkedin %>" ><br>
+  <label for="github"> New GitHub </label>
+  <input type="text" name="github" value="<%= @s.github %>" >
+  <br><input type="submit">
+</form>
+
+<a class="button" href="/">Show All</a>
+
+<%= erb :'layouts/_footer' %>

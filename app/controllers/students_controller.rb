@@ -11,6 +11,23 @@ class StudentsController < ApplicationController
     erb :'students/index' # render the index.erb within app/views/students
   end
 
+  get "/upload/:slug" do
+    @s = Student.find(slug: params[:slug])
+    erb :'students/upload'
+  end 
+
+  post "/upload/:slug" do 
+    @s = Student.find(slug: params[:slug])
+    File.open('public/uploads/' + params['myfile'][:filename], "w") do |f|
+      f.write(params['myfile'][:tempfile].read)
+    end
+
+    return "The file was successfully uploaded!"
+
+    @s.update(profile_image: "public/uploads/" + params['myfile'][:filename])
+    erb :'students/show'
+  end
+
   # Build the rest of the routes here.
 
   # GET '/students/new'
@@ -49,6 +66,7 @@ class StudentsController < ApplicationController
     s = Student.find(slug: params[:slug])
     s.delete
     redirect '/'
+
   end
 
 end

@@ -1,0 +1,10 @@
+<%= erb :'layouts/_header' %>
+
+<h1>Profile Photo Uploader</h1>
+<form action="/upload/<%= @s.slug %>" method="post" enctype='multipart/form-data'>   
+   <input type='file' name='myfile'>  
+      <br>
+   <input type='submit' value='Upload'>
+</form>
+
+<%= erb :'layouts/_footer' %>
