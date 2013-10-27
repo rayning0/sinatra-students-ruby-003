@@ -17,8 +17,6 @@ GEM
     guard-rspec (4.0.3)
       guard (>= 2.1.1)
       rspec (~> 2.14)
-    haml (4.0.3)
-      tilt
     json (1.8.1)
     listen (2.1.1)
       celluloid (>= 0.15.2)
@@ -78,7 +76,6 @@ PLATFORMS
 
 DEPENDENCIES
   guard-rspec
-  haml
   json
   nokogiri
   pry

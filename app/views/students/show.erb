@@ -4,7 +4,16 @@
   <table>
   <tbody>
     <thead>
-      <tr><img src="/public/uploads/<%= @s.profile_image %>" width=300> 
+      <tr>
+      <% if @s.profile_image.nil? %>
+        <img src="http://www.blogenka.com/wp-content/uploads/2012/05/476464-cookie-monster.jpg" width=300>
+      <% elsif @s.profile_image.include?('img/students') %>
+        <img src="http://students.flatironschool.com/<%= @s.profile_image %>" width=300>
+      <% elsif @s.profile_image.include?('http') %>
+        <img src="<%= @s.profile_image %>" width=300> 
+      <% else %>
+        <img src="/img/<%= @s.profile_image %>" width=300> 
+      <% end %>
       <a href="/upload/<%= @s.slug %>">Change Your Photo</a></tr>
       <tr>
         <th>Name</th>

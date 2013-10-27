@@ -1,3 +1,5 @@
+set :public_folder, 'public'
+
 # StudentsController inherits from ApplicationController
 # so any settings defined there will apply to this controller.
 class StudentsController < ApplicationController
@@ -11,20 +13,19 @@ class StudentsController < ApplicationController
     erb :'students/index' # render the index.erb within app/views/students
   end
 
+  # lets you upload/change your profile photo
   get "/upload/:slug" do
     @s = Student.find(slug: params[:slug])
     erb :'students/upload'
   end 
 
+  # changes your profile picture
   post "/upload/:slug" do 
     @s = Student.find(slug: params[:slug])
-    File.open('public/uploads/' + params['myfile'][:filename], "w") do |f|
+    File.open('public/img/' + params['myfile'][:filename], "w") do |f|
       f.write(params['myfile'][:tempfile].read)
     end
-
-    return "The file was successfully uploaded!"
-
-    @s.update(profile_image: "public/uploads/" + params['myfile'][:filename])
+    @s.update(profile_image: params['myfile'][:filename])
     erb :'students/show'
   end
 

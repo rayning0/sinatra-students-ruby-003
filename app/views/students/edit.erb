@@ -1,7 +1,7 @@
 <%= erb :'layouts/_header' %>
 
 <h1>Edit Student</h1>
-
+  <a href="/upload/<%= @s.slug %>">Change Your Photo</a>
   <form action="/students/<%= @s.slug %>"  method="post">
   <label for="name"> New Name </label>
   <input type="text" name="name" value="<%= @s.name %>" ><br>

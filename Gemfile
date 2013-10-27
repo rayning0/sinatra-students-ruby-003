@@ -6,7 +6,6 @@ gem 'sinatra-contrib'
 gem 'sequel'
 gem 'sqlite3'
 gem 'nokogiri'
-gem 'haml'
 
 # Gems to be used only in specific environments.
 group :development, :test do
