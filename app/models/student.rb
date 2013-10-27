@@ -10,5 +10,12 @@
 # http://sequel.rubyforge.org/rdoc/classes/Sequel/Dataset.html
 
 class Student < Sequel::Model
-  
+  def slugify!
+    self.slug = self.name.downcase.gsub(' ','-')
+  end
+
+  def before_save   # before saving to DB, will slugify name
+    self.slug ||= self.slugify!
+    super
+  end
 end

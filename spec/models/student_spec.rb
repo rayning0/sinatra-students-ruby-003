@@ -17,10 +17,11 @@ describe Student do
         # http://sequel.rubyforge.org/rdoc/files/doc/model_hooks_rdoc.html
 
         subject.name = "Avi Flombaum"
-        subject.save
+        # before saving, the model hook (before_save) slugifies student name
+        subject.save 
 
         expect(subject.slug).to eq('avi-flombaum')
-        expect(Student.find_by(:slug => "avi-flombaum")).to eq(subject)
+        expect(Student.find(slug: "avi-flombaum")).to eq(subject)
       end
     end
   end

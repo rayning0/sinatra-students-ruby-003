@@ -39,7 +39,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 
-  config.order = 'random'
+  #config.order = 'random'
   # Add a global before to reset the database on every execution
   # of the test suite.
   config.before do

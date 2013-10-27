@@ -104,4 +104,5 @@ class StudentScraper
       link.attr('href')
     end
   end
+
 end

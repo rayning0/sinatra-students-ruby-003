@@ -14,8 +14,41 @@ class StudentsController < ApplicationController
   # Build the rest of the routes here.
 
   # GET '/students/new'
+  get '/students/new' do
+    erb :'students/new'
+  endsdksdksd
+
   # POST '/students'
+  post '/students' do
+    s = Student.create(params)
+    #s.save
+    redirect "/students/#{s.slug}"
+  end
+
   # GET '/students/avi-flombaum'
+  get "/students/:slug" do
+    @s = Student.find(slug: params[:slug])
+    erb :'students/show'
+  end
+
   # GET '/students/avi-flombaum/edit'
+  get '/students/:slug/edit' do
+    @s = Student.find(slug: params[:slug])
+    erb :'students/edit'
+  end
+
   # POST '/students/avi-flombaum'
+  post '/students/:slug' do
+    s = Student.find(slug: params[:slug])
+    s.update(params.reject {|k, v| k == "splat" || k == "captures"})
+    redirect "/students/#{s.slug}"
+  end
+
+  # GET '/students/slug/destroy'
+  get '/students/:slug/destroy' do
+    s = Student.find(slug: params[:slug])
+    s.delete
+    redirect '/'
+  end
+
 end
