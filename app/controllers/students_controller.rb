@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
   # GET '/students/new'
   get '/students/new' do
     erb :'students/new'
-  endsdksdksd
+  end
 
   # POST '/students'
   post '/students' do
