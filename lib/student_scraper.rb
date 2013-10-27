@@ -19,6 +19,14 @@ class StudentScraper
     "#{self.main_index_url}/#{student}"
   end
 
+  def parse_work(student_page)
+    begin
+      student_page.css("#ok-text-column-4 .services p").children[0].text.gsub("\n","")
+    rescue
+      value_missing
+    end
+  end
+
   def parse_work_title(student_page)
     begin
       student_page.css("div.services p")[1].children[1].text
@@ -69,6 +77,7 @@ class StudentScraper
     students_array.collect do |student|
       student_page = Nokogiri::HTML(open(student_page_url(student)))
       name = student_page.css('h4.ib_main_header').text
+      name = "Rosie Hoyem" if student_page.css(".page-title").children.text.include?("Rosie Hoyem")
       
       # This is using the find_or_create method defined by Sequel
       # http://sequel.rubyforge.org/rdoc/classes/Sequel/Model/ClassMethods.html#method-i-find_or_create
@@ -83,8 +92,8 @@ class StudentScraper
       student.github = social_media[2]
 
       student.quote = parse_quote(student_page)
-      student.bio = parse_bio(student_page)
-      student.work = value_missing
+      student.bio = parse_bio(student_page).strip.squeeze(' ')
+      student.work = parse_work(student_page).strip.squeeze(' ')
       student.work_title = parse_work_title(student_page)
       student.education = parse_education(student_page)
       

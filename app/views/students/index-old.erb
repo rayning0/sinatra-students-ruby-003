@@ -1,0 +1,7 @@
+<% @students.each do |s| %>
+  <p><a href="/students/<%= s.slug %>"><%= s.name %></a> | 
+  <a href="/students/<%= s.slug %>/edit">Edit</a> | 
+  <a href="/students/<%= s.slug %>/destroy">Destroy</a></p>
+<% end %>
+
+<a href="/students/new">New Student</a>

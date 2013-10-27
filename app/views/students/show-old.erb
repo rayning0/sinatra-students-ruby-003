@@ -1,0 +1,42 @@
+<%= erb :'layouts/_header' %>
+
+   <h1>Student Details</h1>
+  <table>
+  <tbody>
+    <thead>
+      <tr>
+      <% if @s.profile_image.nil? %>
+        <img src="http://www.blogenka.com/wp-content/uploads/2012/05/476464-cookie-monster.jpg" width=300>
+      <% elsif @s.profile_image.include?('img/students') %>
+        <img src="http://students.flatironschool.com/<%= @s.profile_image %>" width=300>
+      <% elsif @s.profile_image.include?('http') %>
+        <img src="<%= @s.profile_image %>" width=300> 
+      <% else %>
+        <img src="/img/<%= @s.profile_image %>" width=300> 
+      <% end %>
+      <a href="/upload/<%= @s.slug %>">Change Your Photo</a></tr>
+      <tr>
+        <th>Name</th>
+        <th>Twitter</th>
+        <th>LinkedIn</th>
+        <th>GitHub</th>
+        <th class="change"></th>
+        <th class="change"></th>
+        <th class="change"></th>
+      </tr>
+    </thead>
+  
+      <tr>
+        <td><%= @s.name %></td>
+        <td><%= @s.twitter %></td>
+        <td><%= @s.linkedin %></td>
+        <td><%= @s.github %></td>
+        <td><a href="/">Show All</a></td>
+        <td><a href="/students/<%= @s.slug %>/edit">Edit</a></td>
+        <td><a href="/students/<%= @s.slug %>/destroy">Destroy</a></td>
+      </tr>
+
+</tbody>
+</table>
+
+<%= erb :'layouts/_footer' %>
