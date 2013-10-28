@@ -6,7 +6,7 @@ set :repository,  "git@github.com:rayning0/sinatra-students-ruby-003.git"
 set :user, 'deploy'
 set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
-set :branch, fetch(:branch, "deploy")
+set :branch, fetch(:branch, "live")
 
 set :scm, :git
 
