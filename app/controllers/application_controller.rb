@@ -31,4 +31,8 @@ class ApplicationController < Sinatra::Base
     reload_dirs ['app/concerns', 'app/models', 'app/controllers']
   end
 
+  configure :production do
+    set :dump_errors, true
+    set :show_exceptions, true
+  end
 end

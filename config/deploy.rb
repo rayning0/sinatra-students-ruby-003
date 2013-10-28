@@ -1,11 +1,12 @@
 require 'bundler/capistrano'
 
 set :application, "studentapp"
-set :repository,  "sinatra-students-ruby-003"
+set :repository,  "git@github.com:rayning0/sinatra-students-ruby-003.git"
 
 set :user, 'deploy'
 set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
+set :branch, "deploy"
 
 set :scm, :git
 
@@ -19,13 +20,23 @@ role :app, "162.243.77.169"                          # This may be the same as y
 role :db,  "162.243.77.169", :primary => true        # This is where Rails migrations will run
 
 # if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
+before "deploy:restart", "deploy:symlink_database"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
+  task :symlink_database, :roles => :app do
+    run "ln -nfs #{shared_path}/students-production.db #{current_path}/db/students-production.db"
+  end
+  task :migrate, :roles => :app do 
+    run "cd #{current_path} && rake db:migrate RACK_ENV=production"
+  end
+
+  task :scrape_students, :roles => :app do
+    run "cd #{current_path} && rake scrape_students RACK_ENV=production"
+  end
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
