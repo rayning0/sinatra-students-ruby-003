@@ -35,7 +35,7 @@ describe StudentsController do
 
     # A good controller test you can write for every single route/action
     # is to make sure it responds with a 200 status code.
-=begin
+
     it 'responds with a 200' do
       # We use the last_response object to test the properties of the response
       # sinatra would send to the request. last_response behaves a lot like an
@@ -48,7 +48,7 @@ describe StudentsController do
       # The body of the last_response is basically the rendered HTML from the view.
       expect(last_response.body).to include(student.name)
     end
-=end
+    
   end
 
   # get form to create new student
