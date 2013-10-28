@@ -22,7 +22,7 @@ Bundler.require(:default, ENV['RACK_ENV'])
 # The two modes we are interested in are "development" and "test".
 
 # Establish our Database connection.
-DB = Sequel.connect("sqlite://db/students-#{ENV['RACK_ENV']}.db")
+DB = Sequel.connect("sqlite://db/students-#{ENV['RACK_ENV']}.db", :loggers => [Logger.new($stdout)])
 
 # Load our models, concerns, and controllers
 def load_dirs(array)

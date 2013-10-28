@@ -141,6 +141,11 @@ img {
 }
 
 /* ===[ Layout Styles ]===================================================== */
+input {
+  padding: .5em;
+  margin: .5em;
+  width: 300px;
+}
 
 .main-wrapper {
     width: 100%;

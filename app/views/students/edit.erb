@@ -1,19 +1,42 @@
 <%= erb :'layouts/_header' %>
 
 <h1>Edit Student</h1>
+
+  <img width="304" height="304" class="prof-image"
+
+   <% if @s.profile_image.nil? || @s.profile_image.include?("student_name_profile") %>
+        src="http://www.blogenka.com/wp-content/uploads/2012/05/476464-cookie-monster.jpg"
+   <% elsif @s.profile_image.include?('img/') %>
+        src="/<%= @s.profile_image %>"
+   <% elsif @s.profile_image.include?('http') %>
+        src="<%= @s.profile_image %>"
+   <% else %>
+        src="/img/<%= @s.profile_image %>" 
+   <% end %>
+        class="attachment-blog-thumb wp-post-image" alt="student_name"><br>
+
   <a href="/upload/<%= @s.slug %>">Change Your Photo</a>
   <form action="/students/<%= @s.slug %>"  method="post">
-  <label for="name"> New Name </label>
-  <input type="text" name="name" value="<%= @s.name %>" ><br>
-  <label for="twitter"> New Twitter </label>
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%= @s.name %>"><br>
+  <label for="twitter">Twitter</label>
   <input type="text" name="twitter" value="<%= @s.twitter %>" ><br>
-  <label for="linkedin"> New LinkedIn </label>
+  <label for="linkedin">LinkedIn</label>
   <input type="text" name="linkedin" value="<%= @s.linkedin %>" ><br>
-  <label for="github"> New GitHub </label>
-  <input type="text" name="github" value="<%= @s.github %>" >
-  <br><input type="submit">
-</form>
+  <label for="github">GitHub</label>
+  <input type="text" name="github" value="<%= @s.github %>"><br>
+  <label for="bio">Bio</label><br>
+  <textarea cols="80" rows="4" name="bio"><%= @s.bio %></textarea><br>
+  <label for="work">Work</label><br>
+  <textarea cols="80" rows="4" name="work"><%= @s.work %></textarea><br>
+  <label for="work_title">Work Title</label><br>
+  <textarea cols="80" rows="4" name="work_title"><%= @s.work_title %></textarea><br>
+  <label for="education">Education</label><br>
+  <textarea cols="80" rows="4" name="education"><%= @s.education %></textarea><br>
+  <label for="quote">Quote</label><br>
+  <textarea cols="80" rows="3" name="quote"><%= @s.quote %></textarea><br>
 
-<a class="button" href="/">Show All</a>
+  <input class="button" type="submit"><a class="button" href="/">Cancel</a>
+</form>
 
 <%= erb :'layouts/_footer' %>

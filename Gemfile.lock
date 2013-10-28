@@ -22,6 +22,7 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    logger (1.2.8)
     lumberjack (1.0.4)
     method_source (0.8.2)
     mini_portile (0.5.2)
@@ -77,6 +78,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   json
+  logger
   nokogiri
   pry
   rspec

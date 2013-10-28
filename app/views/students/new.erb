@@ -2,17 +2,27 @@
 
 <h1>New Student</h1>
 
-<form action="/students" method="post">
+  <form action="/students"  method="post">
   <label for="name">Name</label>
-  <input type="text" name="name" >
+  <input type="text" name="name"><br>
   <label for="twitter">Twitter</label>
-  <input type="text" name="twitter" >
+  <input type="text" name="twitter"><br>
   <label for="linkedin">LinkedIn</label>
-  <input type="text" name="linkedin" >
+  <input type="text" name="linkedin"><br>
   <label for="github">GitHub</label>
-  <input type="text" name="github" >
-  <input type="submit" value="create">
+  <input type="text" name="github"><br>
+  <label for="bio">Bio</label><br>
+  <textarea cols="80" rows="4" name="bio"></textarea><br>
+  <label for="work">Work</label><br>
+  <textarea cols="80" rows="4" name="work"></textarea><br>
+  <label for="work_title">Work Title</label><br>
+  <textarea cols="80" rows="4" name="work_title"></textarea><br>
+  <label for="education">Education</label><br>
+  <textarea cols="80" rows="4" name="education"></textarea><br>
+  <label for="quote">Quote</label><br>
+  <textarea cols="80" rows="3" name="quote"></textarea><br>
+
+  <input class="button" type="submit"><a class="button" href="/">Cancel</a>
 </form>
 
-<a class="button" href="/">Show All</a>
 <%= erb :'layouts/_footer' %>
