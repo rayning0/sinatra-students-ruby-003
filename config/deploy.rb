@@ -6,7 +6,7 @@ set :repository,  "git@github.com:rayning0/sinatra-students-ruby-003.git"
 set :user, 'deploy'
 set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
-set :branch, fetch(:branch, "live")
+set :branch, "live"
 
 set :scm, :git
 
@@ -15,9 +15,10 @@ default_run_options[:pty] = true
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "162.243.77.169"                          # Your HTTP server, Apache/etc
-role :app, "162.243.77.169"                          # This may be the same as your `Web` server
-role :db,  "162.243.77.169", :primary => true        # This is where Rails migrations will run
+set :server_ip, '162.243.77.169' # This should be your server IP
+role :web, "#{server_ip}"                          # Your HTTP server, Apache/etc
+role :app, "#{server_ip}"                          # This may be the same as your `Web` server
+role :db,  "#{server_ip}", :primary => true        # This is where Rails migrations will run
 
 # if you want to clean up old releases on each deploy uncomment this:
 before "deploy:restart", "deploy:symlink_database"
@@ -37,6 +38,7 @@ namespace :deploy do
   task :scrape_students, :roles => :app do
     run "cd #{current_path} && rake scrape_students RACK_ENV=production"
   end
+  
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do

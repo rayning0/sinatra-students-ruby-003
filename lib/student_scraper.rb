@@ -81,7 +81,8 @@ class StudentScraper
       
       # This is using the find_or_create method defined by Sequel
       # http://sequel.rubyforge.org/rdoc/classes/Sequel/Model/ClassMethods.html#method-i-find_or_create
-      student = Student.find_or_create(:name => name)
+      #student = Student.find_or_create(:name => name)
+      student = Student.create(:name => name)
 
       student.profile_image = parse_profile_image(student_page)
       student.background_image = parse_background_image(student_page)
